@@ -25,17 +25,13 @@ import java.util.Properties;
 
 
 public abstract class AbstractBaseAdapter {
-    // protected <Type> inputPort;
+    protected Properties adapterProperties;
     protected KafkaProducerOutput outputPort;
 
 
 	public AbstractBaseAdapter() {
-        // Get net.modelbased.proasense.adapter.base properties
-        Properties adapterProperties = loadAdapterProperties();
-
-        // <Type> input port properties
-
-        // Define the <Type> input port
+        // Get adapter properties
+        this.adapterProperties = loadAdapterProperties();
 
         // Kafka output port properties
         String bootstrapServers = adapterProperties.getProperty("kafka.bootstrap.servers");
