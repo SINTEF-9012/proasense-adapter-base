@@ -17,10 +17,6 @@
         </repository>
     </repositories>
 
-    <properties>
-        <twitter4j.version>3.0.3</twitter4j.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>eu.proasense.internal</groupId>
