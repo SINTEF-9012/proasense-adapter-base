@@ -37,9 +37,10 @@ public abstract class AbstractBaseAdapter {
         String bootstrapServers = adapterProperties.getProperty("kafka.bootstrap.servers");
         String topic = adapterProperties.getProperty("proasense.adapter.base.topic");
         String sensorId = adapterProperties.getProperty("proasense.adapter.base.sensorid");
+        Boolean publish = new Boolean(adapterProperties.getProperty("proasense.adapter.base.publish")).booleanValue();
 
         // Define the Kafka output port
-        this.outputPort = new KafkaProducerOutput(bootstrapServers, topic, sensorId);
+        this.outputPort = new KafkaProducerOutput(bootstrapServers, topic, sensorId, publish);
     }
 
 

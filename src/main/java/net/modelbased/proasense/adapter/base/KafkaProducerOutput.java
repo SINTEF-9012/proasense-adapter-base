@@ -20,15 +20,12 @@ package net.modelbased.proasense.adapter.base;
 
 import eu.proasense.internal.ComplexValue;
 import eu.proasense.internal.SimpleEvent;
-import org.apache.kafka.clients.producer.KafkaProducer;
+
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.thrift.TException;
 import org.apache.thrift.TSerializer;
 import org.apache.thrift.protocol.TBinaryProtocol;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
 
@@ -37,14 +34,16 @@ public class KafkaProducerOutput {
     private String bootstrapServers;
     private String topic;
     private String sensorId;
+    private Boolean publish;
     private org.apache.kafka.clients.producer.KafkaProducer<String, byte[]> producer;
 
 
-	public KafkaProducerOutput(String bootstrapServers, String topic, String sensorId) {
+	public KafkaProducerOutput(String bootstrapServers, String topic, String sensorId, Boolean publish) {
         // Initialize properties
         this.bootstrapServers = bootstrapServers;
         this.topic = topic;
         this.sensorId = sensorId;
+        this.publish = publish;
 
         // Define the producer object
         this.producer = createProducer(this.bootstrapServers);
@@ -91,8 +90,10 @@ public class KafkaProducerOutput {
             byte[] bytes = serializer.serialize(event);
 
             // Publish message
-            ProducerRecord<String, byte[]> message = new ProducerRecord<String, byte[]>(topic, bytes);
-            this.producer.send(message);
+            if (this.publish) {
+                ProducerRecord<String, byte[]> message = new ProducerRecord<String, byte[]>(topic, bytes);
+                this.producer.send(message);
+            }
         }
         catch (TException e) {
             System.out.println(e.getClass().getName() + ": " + e.getMessage());
