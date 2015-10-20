@@ -4,16 +4,16 @@
 
     <groupId>net.modelbased.proasense</groupId>
     <artifactId>proasense-adapter-base</artifactId>
-    <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
-    <name>proasense-adapter-base Maven Webapp</name>
+    <packaging>jar</packaging>
+    <name>proasense-adapter-base</name>
     <url>http://maven.apache.org</url>
 
     <repositories>
         <repository>
             <id>archiva.public</id>
             <name>Nissatech Public Repository</name>
-            <url>http://maven.nissatech.com/repository/public/</url>
+            <url>http://maven.nissatech.com/repository/public</url>
         </repository>
     </repositories>
 
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>eu.proasense.internal</groupId>
             <artifactId>thrift-messages</artifactId>
-            <version>0.4</version>
+            <version>0.5</version>
         </dependency>
         <dependency>
             <groupId>org.apache.thrift</groupId>
