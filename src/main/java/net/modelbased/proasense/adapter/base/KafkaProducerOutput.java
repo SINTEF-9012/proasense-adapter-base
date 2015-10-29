@@ -51,25 +51,13 @@ public class KafkaProducerOutput {
 
 
     private org.apache.kafka.clients.producer.KafkaProducer<String, byte[]> createProducer(String bootstrapServers) {
-/**
-        // Specify producer config properties
-        Properties props = new Properties();
-        props.put("metadata.broker.list", bootstrapServers);
-        props.put("serializer.class", "kafka.serializer.StringEncoder");
-        props.put("producer.type", "sync");
-        props.put("queue.enqueue.timeout.ms", "-1");
-        props.put("batch.num.messages", "200");
-        props.put("compression.codec", "1");
-        props.put("request.required.acks", "1");
-
-        // Define the producer config object
-        ProducerConfig config = new ProducerConfig(props);
-**/
         // Specify producer properties
         Properties props = new Properties();
-        props.put("bootstrap.servers", bootstrapServers);
+        props.put("metadata.broker.list", bootstrapServers);
+//        props.put("bootstrap.servers", bootstrapServers);
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
+        props.put("request.required.acks", "1");
 
         // Define the producer object
         org.apache.kafka.clients.producer.KafkaProducer<String, byte[]> producer = new org.apache.kafka.clients.producer.KafkaProducer<String, byte[]>(props);
