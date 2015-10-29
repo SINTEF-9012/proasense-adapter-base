@@ -79,7 +79,7 @@ public class KafkaProducerOutput {
 
             // Publish message
             if (this.publish) {
-                ProducerRecord<String, byte[]> message = new ProducerRecord<String, byte[]>(topic, bytes);
+                ProducerRecord<String, byte[]> message = new ProducerRecord<String, byte[]>(topic, "adapterkey", bytes);
                 this.producer.send(message);
             }
         }
