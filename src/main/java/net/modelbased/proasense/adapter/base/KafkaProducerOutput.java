@@ -22,6 +22,8 @@ import eu.proasense.internal.ComplexValue;
 import eu.proasense.internal.SimpleEvent;
 
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.KafkaProducer;
+
 import org.apache.thrift.TException;
 import org.apache.thrift.TSerializer;
 import org.apache.thrift.protocol.TBinaryProtocol;
@@ -50,14 +52,12 @@ public class KafkaProducerOutput {
     }
 
 
-    private org.apache.kafka.clients.producer.KafkaProducer<String, byte[]> createProducer(String bootstrapServers) {
+    private KafkaProducer<String, byte[]> createProducer(String bootstrapServers) {
         // Specify producer properties
         Properties props = new Properties();
-        props.put("metadata.broker.list", bootstrapServers);
         props.put("bootstrap.servers", bootstrapServers);
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
-        props.put("request.required.acks", "1");
 
         // Define the producer object
         org.apache.kafka.clients.producer.KafkaProducer<String, byte[]> producer = new org.apache.kafka.clients.producer.KafkaProducer<String, byte[]>(props);
