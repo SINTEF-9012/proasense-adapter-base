@@ -54,7 +54,7 @@ public class KafkaProducerOutput {
         // Specify producer properties
         Properties props = new Properties();
         props.put("metadata.broker.list", bootstrapServers);
-//        props.put("bootstrap.servers", bootstrapServers);
+        props.put("bootstrap.servers", bootstrapServers);
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
         props.put("request.required.acks", "1");
