@@ -75,11 +75,9 @@ public class KafkaProducerOutput {
         // Specify producer properties
         Properties props = new Properties();
         props.put("metadata.broker.list", bootstrapServers);
-        props.put("request.required.acks", "1");
         props.put("producer.type", "sync");
         props.put("serializer.class", "kafka.serializer.DefaultEncoder");
         props.put("key.serializer.class", "kafka.serializer.StringEncoder");
-        props.put("partitioner.class", "kafka.producer.DefaultPartitioner");
 
         ProducerConfig config = new ProducerConfig(props);
 
